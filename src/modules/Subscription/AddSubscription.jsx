@@ -1,26 +1,3 @@
-// Schema for the forms
-
-// souscripteur: {
-//   fullName: String,
-//   nss: String,
-//   dateNais: String,
-//   mobile: String,
-//   email: String,
-//   adresse: String,
-// }
-// produit: {
-//   id: String,
-//   nom: String,
-//   description: String,
-// }
-// cotisation: {
-//   modePayement: String,
-//   frequencePayement: String,
-//   montant: Number,
-//   jourAppel: String,
-//   tiers: String,
-// }
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {

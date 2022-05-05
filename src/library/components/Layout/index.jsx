@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router';
 import { Navigate } from 'react-router-dom';
 // import { UserContext } from '../../../App';
-import { useAuthValue } from '../../../main/store/userStore';
+import { useUserValue } from '../../../main/store/userStore';
 import {
   AppShell,
   Navbar,
@@ -88,13 +88,13 @@ const useStyles = createStyles((theme) => ({
 
 function Layout() {
   const location = useLocation();
-  const { currentUser } = useAuthValue();
+  const { currentUser } = useUserValue();
   const { classes } = useStyles();
   const links = mockdata.map((item) => (
     <LinksGroup {...item} key={item.label} />
   ));
 
-  return !currentUser?.emailVerified ? (
+  return currentUser ? (
     <AppShell
       padding="md"
       navbar={

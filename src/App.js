@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import Routes from './main/routes';
-import { AuthProvider } from './main/store/userStore';
+import { UserProvider } from './main/store/userStore';
 import { auth } from './main/store/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
@@ -35,7 +35,7 @@ function App() {
   ]);
   return (
     <ApolloProvider client={client}>
-      <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
+      <UserProvider value={{ currentUser, timeActive, setTimeActive }}>
         <ColorSchemeProvider
           colorScheme={colorScheme}
           toggleColorScheme={toggleColorScheme}
@@ -46,7 +46,7 @@ function App() {
             </Suspense>
           </MantineProvider>
         </ColorSchemeProvider>
-      </AuthProvider>
+      </UserProvider>
     </ApolloProvider>
   );
 }
