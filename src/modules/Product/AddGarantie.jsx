@@ -28,69 +28,6 @@ import { Calendar, CirclePlus } from 'tabler-icons-react';
 
 import StyledStepper from '../../components/StyledStepper';
 
-const actesDataTest = [
-  {
-    id: '1',
-    libelle: 'famille1',
-    value: 'famille1',
-    label: 'famille1',
-    actes: [
-      { id: '5', libelle: 'Acte 2-1' },
-      { id: '6', libelle: 'Acte 2-2' },
-      { id: '7', libelle: 'Acte 2--3' },
-      { id: '8', libelle: 'Acte 2--4' },
-    ],
-    acteFamilles: [
-      {
-        id: '2',
-        libelle: 'famille1--1',
-        actes: [
-          { id: '3', libelle: 'acte1--1--1' },
-          { id: '4', libelle: 'acte1--1--2' },
-          { id: '5', libelle: 'acte1--1--3' },
-          { id: '6', libelle: 'acte1--1--4' },
-        ],
-      },
-      {
-        id: '3',
-        libelle: 'famille1--2',
-        actes: [
-          { id: '7', libelle: 'acte1--2--1' },
-          { id: '8', libelle: 'acte1--2--2' },
-          { id: '9', libelle: 'acte1--2--3' },
-        ],
-      },
-    ],
-  },
-  {
-    id: '4',
-    libelle: 'famille2',
-    value: 'famille2',
-    label: 'famille2',
-    actes: [
-      { id: '5', libelle: 'Acte 2--1' },
-      { id: '6', libelle: 'Acte 2--2' },
-      { id: '7', libelle: 'Acte 2--3' },
-      { id: '8', libelle: 'Acte 2--4' },
-    ],
-  },
-];
-
-const g = {
-  id: 0,
-  libelle: 'string',
-  libelleCommercial: 'string',
-  dateEffet: '2022-04-25T22:51:38.587Z',
-  enseigne: 'string',
-  risques: [0],
-  gestionPrestation: true,
-  gestionCotisation: true,
-  zones: [0],
-  idDevise: 0,
-  description: 'string',
-  sousProduitId: 0,
-};
-
 function AddGarantie() {
   const [active, setActive] = useState(0);
   const [libelle, setLibelle] = useState('');
@@ -117,14 +54,14 @@ function AddGarantie() {
         console.log(sousProduitSrc);
       }
     );
-  }, []);
+  });
   useEffect(() => {
     Service.Get('https://localhost:44319/api/ActeFamille/GetHierarchy').then(
       (response) => {
         setFamilleSource(response);
       }
     );
-  }, []);
+  });
   const nextStep = () => {
     setActive((current) => (current < 3 ? current + 1 : current));
     setData({
@@ -424,7 +361,7 @@ const SecondForm = ({ ...props }) => {
           console.log(error);
         });
       // setData(Array(10).fill(rc));
-    }, []);
+    });
     return (
       <Modal
         centered

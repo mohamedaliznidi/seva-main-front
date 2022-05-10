@@ -25,23 +25,6 @@ import axios from 'axios';
 
 import Table from '../../components/Table';
 
-const rc = {
-  id: 1,
-  libelle: 'string',
-  age: 50,
-  zone: {
-    id: 1,
-    libelle: 'zone 1',
-    pays: null,
-    garanties: null,
-    produits: null,
-    sousProduits: null,
-  },
-  zoneId: 1,
-  typeCotisant: 'Assuré',
-  RegleCalculs: null,
-};
-
 const Codec = () => {
   const [data, setData] = useState([]);
   const [libelle, setLibelle] = useState('');
@@ -70,7 +53,7 @@ const Codec = () => {
         console.log(error);
       });
     // setData(Array(10).fill(rc));
-  }, [opened]);
+  });
   const HeaderTemplate = () => (
     <tr>
       <td>Libelle</td>

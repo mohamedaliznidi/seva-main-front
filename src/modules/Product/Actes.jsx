@@ -12,65 +12,12 @@ import {
   Switch,
   TextInput,
   Select,
-  MultiSelect,
   InputWrapper,
   Button,
 } from '@mantine/core';
 import axios from 'axios';
 import Table from '../../components/Table';
 import { Filter, FileDownload, Search, Plus } from 'tabler-icons-react';
-
-const dataTest = [
-  {
-    id: '1',
-    libelle: 'famille1',
-    actes: [
-      { id: '5', libelle: 'Acte 2-1' },
-      { id: '6', libelle: 'Acte 2-2' },
-      { id: '7', libelle: 'Acte 2--3' },
-      { id: '8', libelle: 'Acte 2--4' },
-    ],
-    acteFamille: null,
-    acteFamilles: [
-      {
-        id: '2',
-        libelle: 'famille1--1',
-        actes: [
-          { id: '3', libelle: 'acte1--1--1' },
-          { id: '4', libelle: 'acte1--1--2' },
-          { id: '5', libelle: 'acte1--1--3' },
-          { id: '6', libelle: 'acte1--1--4' },
-        ],
-        acteFamille: null,
-        acteFamilles: null,
-      },
-      {
-        id: '3',
-        libelle: 'famille1--2',
-        actes: [
-          { id: '7', libelle: 'acte1--2--1' },
-          { id: '8', libelle: 'acte1--2--2' },
-          { id: '9', libelle: 'acte1--2--3' },
-        ],
-        acteFamille: null,
-        acteFamilles: null,
-      },
-    ],
-  },
-
-  {
-    id: '4',
-    libelle: 'famille2',
-    actes: [
-      { id: '5', libelle: 'Acte 2--1' },
-      { id: '6', libelle: 'Acte 2--2' },
-      { id: '7', libelle: 'Acte 2--3' },
-      { id: '8', libelle: 'Acte 2--4' },
-    ],
-    acteFamille: null,
-    acteFamilles: null,
-  },
-];
 
 function Acte() {
   const [opened, setOpened] = useState(false);
@@ -213,7 +160,7 @@ function ActesPopup({ data, ...props }) {
         console.log(familleSource);
       }
     );
-  }, []);
+  });
 
   return (
     <Modal

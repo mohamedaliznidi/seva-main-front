@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Table from '../../components/Table';
-import source from '../../resources/seed/produit.json';
 import { useNavigate } from 'react-router-dom';
 
 const Garantie = () => {
@@ -21,7 +20,7 @@ const Garantie = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  });
 
   let navigate = useNavigate();
   const HeaderTemplate = () => (

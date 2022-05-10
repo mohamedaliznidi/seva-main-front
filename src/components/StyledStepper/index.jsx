@@ -46,7 +46,8 @@ const EndStep = ({ cb, data }) => {
     console.log('here');
     cb();
     setLoading(false);
-  }, []);
+    setError(false);
+  });
   return (
     <QueryResult loading={loading} error={error} data={{ hello: '' }}>
       <Center style={{ width: '100%', height: 400 }}>
