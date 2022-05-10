@@ -26,7 +26,7 @@ import { DatePicker } from '@mantine/dates';
 import { useUncontrolled } from '@mantine/hooks';
 import { Calendar, CirclePlus } from 'tabler-icons-react';
 
-import StyledStepper from '../../library/components/StyledStepper';
+import StyledStepper from '../../components/StyledStepper';
 
 const actesDataTest = [
   {

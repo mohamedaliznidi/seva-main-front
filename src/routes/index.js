@@ -1,21 +1,21 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Dashboard from '../../modules/Dashboard';
-import Product from '../../modules/Product';
-import AddProduct from '../../modules/Product/AddProduct';
-import Garantie from '../../modules/Product/Garantie';
-import AddGarantie from '../../modules/Product/AddGarantie';
-import Actes from '../../modules/Product/Actes';
-import Codec from '../../modules/Product/Codec';
-import Subscription from '../../modules/Subscription';
-import AddSubscription from '../../modules/Subscription/AddSubscription';
-import Contract from '../../modules/Contract';
-import DetailContract from '../../modules/Contract/DetailContract';
-import Statistic from '../../modules/Statistic';
-import Layout from '../../library/components/Layout';
-import NotFoundTitle from '../../library/components/NotFoundTitle';
-import Login from '../../modules/Auth/Login';
+import Dashboard from '../modules/Dashboard';
+import Product from '../modules/Product';
+import AddProduct from '../modules/Product/AddProduct';
+import Garantie from '../modules/Product/Garantie';
+import AddGarantie from '../modules/Product/AddGarantie';
+import Actes from '../modules/Product/Actes';
+import Codec from '../modules/Product/Codec';
+import Subscription from '../modules/Subscription';
+import AddSubscription from '../modules/Subscription/AddSubscription';
+import Contract from '../modules/Contract';
+import DetailContract from '../modules/Contract/DetailContract';
+import Statistic from '../modules/Statistic';
+import Layout from '../components/Layout';
+import NotFoundTitle from '../components/NotFoundTitle';
+import Login from '../modules/Auth/Login';
 
 function RoutesPage() {
   return (

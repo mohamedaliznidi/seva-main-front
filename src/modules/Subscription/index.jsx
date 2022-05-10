@@ -19,7 +19,7 @@ import {
 } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 
-import Table from '../../library/components/Table';
+import Table from '../../components/Table';
 import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';

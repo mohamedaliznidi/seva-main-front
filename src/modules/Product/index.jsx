@@ -3,7 +3,7 @@ import { Title, ActionIcon, Group, Badge, Input } from '@mantine/core';
 import { Filter, FileDownload, Search, Plus } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 
-import Table from '../../library/components/Table';
+import Table from '../../components/Table';
 import source from '../../resources/seed/produit.json';
 import { useNavigate } from 'react-router-dom';
 import Service from '../../Services/Index';

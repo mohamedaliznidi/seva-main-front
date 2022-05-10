@@ -3,8 +3,8 @@ import { Filter, FileDownload, Search } from 'tabler-icons-react';
 import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
-import Table from '../../library/components/Table';
-import QueryResult from '../../library/components/QueryResult';
+import Table from '../../components/Table';
+import QueryResult from '../../components/QueryResult';
 
 const CONTRACTS = gql`
   # Query goes here

@@ -15,8 +15,8 @@ import {
 import { DatePicker } from '@mantine/dates';
 import { Calendar } from 'tabler-icons-react';
 
-import StyledStepper from '../../library/components/StyledStepper';
-import { ProductButton } from '../../library/components/ProductButton';
+import StyledStepper from '../../components/StyledStepper';
+import { ProductButton } from '../../components/ProductButton';
 
 const baseURL = 'http://localhost:5000/subscription';
 

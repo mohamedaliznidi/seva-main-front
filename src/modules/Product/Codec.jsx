@@ -23,7 +23,7 @@ import {
 } from 'tabler-icons-react';
 import axios from 'axios';
 
-import Table from '../../library/components/Table';
+import Table from '../../components/Table';
 
 const rc = {
   id: 1,

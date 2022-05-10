@@ -25,8 +25,8 @@ import { Bell, MessageCircle } from 'tabler-icons-react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
-import Comment from '../../library/components/Comment';
-import QueryResult from '../../library/components/QueryResult';
+import Comment from '../../components/Comment';
+import QueryResult from '../../components/QueryResult';
 
 const tabs = [
   { name: 'Général', link: '' },

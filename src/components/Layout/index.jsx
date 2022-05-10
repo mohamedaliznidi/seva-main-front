@@ -1,7 +1,7 @@
-import { useLocation } from 'react-router';
-import { Navigate } from 'react-router-dom';
-// import { UserContext } from '../../../App';
-import { useUserValue } from '../../../main/store/userStore';
+import { useLocation, useNavigate } from 'react-router';
+import { signOut } from 'firebase/auth';
+import { auth } from '../..//store/firebase';
+import { useUserValue } from '../..//store/userStore';
 import {
   AppShell,
   Navbar,
@@ -21,6 +21,7 @@ import {
 } from 'tabler-icons-react';
 import { UserButton } from '../UserButton';
 import { LinksGroup } from '../NavbarLinksGroup';
+import { useEffect } from 'react';
 
 const mockdata = [
   { label: 'Dashboard', icon: Gauge, link: '/', shortCut: 'H' },
@@ -57,10 +58,10 @@ const useStyles = createStyles((theme) => ({
   },
 
   header: {
-    padding: theme.spacing.md,
+    padding: 10,
     paddingTop: 0,
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
+    marginLeft: -10,
+    marginRight: -10,
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     borderBottom: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
@@ -68,8 +69,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   links: {
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
+    marginLeft: -10,
+    marginRight: -10,
   },
 
   linksInner: {
@@ -78,8 +79,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   footer: {
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
+    marginLeft: -10,
+    marginRight: -10,
     borderTop: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
@@ -88,13 +89,34 @@ const useStyles = createStyles((theme) => ({
 
 function Layout() {
   const location = useLocation();
-  const { currentUser } = useUserValue();
+  let navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useUserValue();
   const { classes } = useStyles();
   const links = mockdata.map((item) => (
     <LinksGroup {...item} key={item.label} />
   ));
+  const logout = () => {
+    signOut(auth)
+      .then((result) => {
+        setCurrentUser(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  return currentUser ? (
+  useEffect(() => {
+    if (!currentUser && localStorage.getItem('token')) {
+      setCurrentUser(JSON.parse(localStorage.getItem('user')));
+    } else if (!currentUser && !localStorage.getItem('token')) {
+      navigate('/login', { replace: true, state: { from: location } });
+    }
+  });
+
+  return (
     <AppShell
       padding="md"
       navbar={
@@ -117,9 +139,10 @@ function Layout() {
           </Navbar.Section>
           <Navbar.Section className={classes.footer}>
             <UserButton
-              image="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-              name="Mohamed Ali ZNIDI"
-              email="maznidi@iga-tunisie.com"
+              image={currentUser?.photoURL || ''}
+              name={currentUser?.displayName ? currentUser?.displayName : 'doe'}
+              email={currentUser?.email}
+              cb={logout}
             />
           </Navbar.Section>
         </Navbar>
@@ -137,53 +160,7 @@ function Layout() {
     >
       <Outlet />
     </AppShell>
-  ) : (
-    <Navigate to="/login" replace state={{ from: location }} />
   );
-  // return (
-  //   <AppShell
-  //     padding="md"
-  //     navbar={
-  //       <Navbar
-  //         width={{ base: 250 }}
-  //         height={'100vh'}
-  //         p="xs"
-  //         pb={0}
-  //         className={classes.navbar}
-  //       >
-  //         <Navbar.Section className={classes.header}>
-  //           <Group position="apart">
-  //             <Logo width={120} />
-  //             <SwitchToggle />
-  //           </Group>
-  //         </Navbar.Section>
-
-  //         <Navbar.Section grow className={classes.links} component={ScrollArea}>
-  //           <div className={classes.linksInner}>{links}</div>
-  //         </Navbar.Section>
-  //         <Navbar.Section className={classes.footer}>
-  //           <UserButton
-  //             image="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-  //             name="Mohamed Ali ZNIDI"
-  //             email="maznidi@iga-tunisie.com"
-  //           />
-  //         </Navbar.Section>
-  //       </Navbar>
-  //     }
-  //     styles={(theme) => ({
-  //       main: {
-  //         backgroundColor:
-  //           theme.colorScheme === 'dark'
-  //             ? theme.colors.dark[8]
-  //             : theme.colors.gray[0],
-  //         overflow: 'auto',
-  //         height: '100vh',
-  //       },
-  //     })}
-  //   >
-  //     <Outlet />
-  //   </AppShell>
-  // );
 }
 
 export default Layout;

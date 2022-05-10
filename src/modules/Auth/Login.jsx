@@ -12,18 +12,19 @@ import {
   Anchor,
   Center,
 } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import {
   GoogleButton,
   TwitterButton,
-} from '../../library/components/SocialButtons/SocialButtons';
+} from '../../components/SocialButtons/SocialButtons';
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
 } from 'firebase/auth';
 
-import { auth } from '../../main/store/firebase';
-import { useUserValue } from '../../main/store/userStore';
+import { auth } from '../../store/firebase';
+import { useUserValue } from '../../store/userStore';
 
 function Login(props) {
   const provider = new GoogleAuthProvider();
@@ -62,10 +63,32 @@ function Login(props) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setCurrentUser(userCredential.user);
+        localStorage.setItem('token', currentUser.accessToken);
+        localStorage.setItem('user', JSON.stringify(currentUser));
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error(error);
+        showNotification({
+          title: 'ERROR',
+          message: 'Verify your email and password',
+          color: 'red',
+        });
+      });
+  };
+  const signinHandler = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setCurrentUser(userCredential.user);
+        localStorage.setItem('token', currentUser.accessToken);
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        showNotification({
+          title: 'ERROR',
+          message: 'Verify your email and password',
+          color: 'red',
+        });
       });
   };
 
@@ -91,7 +114,9 @@ function Login(props) {
 
         <form
           onSubmit={form.onSubmit((e) => {
-            loginHandler(e.email, e.password);
+            type === 'login'
+              ? loginHandler(e.email, e.password)
+              : signinHandler(e.email, e.password, e.name);
           })}
         >
           <Group direction="column" grow>

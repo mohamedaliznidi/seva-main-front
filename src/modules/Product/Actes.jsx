@@ -17,7 +17,7 @@ import {
   Button,
 } from '@mantine/core';
 import axios from 'axios';
-import Table from '../../library/components/Table';
+import Table from '../../components/Table';
 import { Filter, FileDownload, Search, Plus } from 'tabler-icons-react';
 
 const dataTest = [

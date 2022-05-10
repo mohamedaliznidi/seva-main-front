@@ -22,7 +22,7 @@ import { useUncontrolled } from '@mantine/hooks';
 import { Calendar } from 'tabler-icons-react';
 import axios from 'axios';
 
-import StyledStepper from '../../library/components/StyledStepper';
+import StyledStepper from '../../components/StyledStepper';
 
 const p = {
   id: 0,

@@ -4,7 +4,7 @@ import { Filter, FileDownload, Search, Plus } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import Table from '../../library/components/Table';
+import Table from '../../components/Table';
 import source from '../../resources/seed/produit.json';
 import { useNavigate } from 'react-router-dom';
 
